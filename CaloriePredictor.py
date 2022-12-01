@@ -17,4 +17,5 @@ user_input_reshaped = user_input_array.reshape(1,-1)
 # Calculating prediction based on user input
 user_input_prediction = loaded_model.predict(user_input_reshaped)
 
+
 print(user_input_prediction)
