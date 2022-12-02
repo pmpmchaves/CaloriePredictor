@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 
 # Loading the saved model
-loaded_model = pickle.load(open('Users/Pedro/OneDrive/Ambiente de Trabalho/CalorieCounterProject/trained_model.pkl', 'rb'))
+loaded_model = pickle.load(open('C:/Users/Pedro/CalorieCounterProject/trained_model.pkl', 'rb'))
 
 # Adjusting our model prediction framework to work with out loaded model
 user_input = (0,27,176,76,25,120,40)
