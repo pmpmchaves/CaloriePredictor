@@ -1,4 +1,3 @@
-from ensurepip import version
 import numpy as np
 import pickle
 from xgboost import XGBRegressor
