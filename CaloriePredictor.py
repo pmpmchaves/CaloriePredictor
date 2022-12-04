@@ -1,8 +1,18 @@
 from ensurepip import version
 import numpy as np
 import pickle
+from xgboost import XGBRegressor
 
-# Loading the saved model
+## Different options to load the model:
+# Option 1: Loading the saved model as json file
+#loaded_model = XGBRegressor()
+#loaded_model.load_model('/mnt/c/Users/Pedro/CalorieCounterProject/CaloriePredictor-main/trained_model1.json')
+# Option 2: Loading the saved j.sav model
+#import joblib
+#loaded_model = joblib.load("/mnt/c/Users/Pedro/CalorieCounterProject/CaloriePredictor-main/trained_model2.sav")
+
+
+# Option 3: Loading the saved pickle model
 loaded_model = pickle.load(open('/mnt/c/Users/Pedro/CalorieCounterProject/CaloriePredictor-main/trained_model.pkl', 'rb'))
 
 # Adjusting our model prediction framework to work with out loaded model

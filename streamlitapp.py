@@ -1,15 +1,15 @@
 import numpy as np
 import pickle
 import streamlit as st
+import datetime
+from datetime import date
+from PIL import Image
 
 # Loading the saved model
 loaded_model = pickle.load(open('/mnt/c/Users/Pedro/CalorieCounterProject/CaloriePredictor-main/trained_model.pkl', 'rb'))
 
 
 def calorie_prediction(user_input):
-
-    # Adjusting our model prediction framework to work with out loaded model
-    user_input = (0,27,176,76,25,120,40)
 
     # Transforming user input data into a numpy array
     user_input_array = np.asarray(user_input)
@@ -25,26 +25,38 @@ def calorie_prediction(user_input):
 
 def main():
 
+    image = Image.open('/mnt/c/Users/Pedro/CalorieCounterProject/CaloriePredictor-main/Woman_Running.jpg')
+    new_image = image.resize((500, 320))
+    st.image(new_image, use_column_width=False)
+
     # Giving a title
     st.title("Calorie Prediction Web App")
 
-    # Getting the input from the user
-    Gender = st.text_input("Gender (M/F)")
-    Age = st.number_input("Age in years")
-    Height = st.number_input("Height in cm")
-    Weight = st.number_input("Weight in kg")
-    Duration = st.number_input("Workout Duration in minutes")
-    HeartRate = st.number_input("Heart Rate in bpm")
+    # Getting the inputs from the user
+    Gender = st.selectbox('Select your gender at birth', ["Male","Female"])
+    if Gender == "Male":
+        Gender = 0
+    else:
+        Gender = 1
+
+    Age_input = st.date_input("Type your Birthday",min_value=datetime.date(1930, 1, 1),max_value=date.today())
+    today = date.today()
+    Age = float((today - Age_input)/datetime.timedelta(days=365))
+
+    Height = st.number_input("Type your Height in cm")
+    Weight = st.number_input("Type your Weight in kg")
+    Duration = st.slider('Select your Workout Duration in minutes', 1, 90, 1)
+    HeartRate = st.slider("Select your average Heart Rate in beats per minute",50, 190, 1)
     BodyTemperature = st.number_input("Body Temperature in Celsius")
 
     # Code for prediction
     prediction = ""
 
-    #Creating a button for prediction
+    # Creating a button for prediction
     if st.button("Predict how many calories I burnt"):
-        prediction = calorie_prediction([Gender, Age, Height, Weight, Duration, HeartRate, BodyTemperature])
+        prediction = float(calorie_prediction([Gender, Age, Height, Weight, Duration, HeartRate, BodyTemperature])[0])
+        st.success(f"You burnt {prediction} calories in this workout session!", icon="✅")
 
-    st.success(prediction)
 
 
 if __name__ == "__main__":
