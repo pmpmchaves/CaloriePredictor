@@ -1,6 +1,6 @@
 FROM python:3.8.15-bullseye
 
-RUN mkdir /app/source
+RUN mkdir -p /app/source
 
 WORKDIR /app/source
 
