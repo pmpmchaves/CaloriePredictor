@@ -15,6 +15,6 @@ This is a work in progress and will be updated on a regular basis.
 ## Friendly user interface and model deployment:
 
 - Streamlit will be used to build a user friendly interface where users can interact with the model.
-- Docker will be used to create a virtual environment where the Streamlit app will be deployed.
+- Docker will be used to create a container where the Streamlit app will be deployed.
 
 Work in progress..
