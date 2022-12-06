@@ -54,7 +54,7 @@ def main():
 
     # Creating a button for prediction
     if st.button("Predict how many calories I burnt"):
-        prediction = float(calorie_prediction([Gender, Age, Height, Weight, Duration, HeartRate, BodyTemperature])[0])
+        prediction = round(float(calorie_prediction([Gender, Age, Height, Weight, Duration, HeartRate, BodyTemperature])[0]),2)
         st.success(f"You burnt {prediction} calories in this workout session!", icon="✅")
 
 
